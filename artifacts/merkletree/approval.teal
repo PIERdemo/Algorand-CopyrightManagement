@@ -1,0 +1,495 @@
+#pragma version 8
+intcblock 127 0 1 32 2032
+bytecblock 0x 0x000102030405060708090a0b0c0d0e0f 0x646561756c745f726f6f74 0x0000000000000000000000000000000000000000000000000000000000000000
+txn NumAppArgs
+intc_1 // 0
+==
+bnz main_l8
+txna ApplicationArgs 0
+pushbytes 0x8e79358d // "create(byte[])void"
+==
+bnz main_l7
+txna ApplicationArgs 0
+pushbytes 0xe4be559a // "get_root(uint64)byte[]"
+==
+bnz main_l6
+txna ApplicationArgs 0
+pushbytes 0x3de47cf9 // "set_root(uint64,byte[])void"
+==
+bnz main_l5
+err
+main_l5:
+txn OnCompletion
+intc_1 // NoOp
+==
+txn ApplicationID
+intc_1 // 0
+!=
+&&
+assert
+callsub setrootcaster_10
+intc_2 // 1
+return
+main_l6:
+txn OnCompletion
+intc_1 // NoOp
+==
+txn ApplicationID
+intc_1 // 0
+!=
+&&
+assert
+callsub getrootcaster_9
+intc_2 // 1
+return
+main_l7:
+txn OnCompletion
+intc_1 // NoOp
+==
+txn ApplicationID
+intc_1 // 0
+==
+&&
+assert
+callsub createcaster_8
+intc_2 // 1
+return
+main_l8:
+txn OnCompletion
+intc_2 // OptIn
+==
+bnz main_l10
+err
+main_l10:
+txn ApplicationID
+intc_1 // 0
+!=
+assert
+callsub optin_3
+intc_2 // 1
+return
+
+// zero_impl
+zeroimpl_0:
+proto 1 0
+frame_dig -1
+pushbytes 0x00 // 0x00
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x01 // 0x01
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x02 // 0x02
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x03 // 0x03
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x04 // 0x04
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x05 // 0x05
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x06 // 0x06
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x07 // 0x07
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x08 // 0x08
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x09 // 0x09
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x0a // 0x0a
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x0b // 0x0b
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x0c // 0x0c
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x0d // 0x0d
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x0e // 0x0e
+intc_0 // 127
+bzero
+app_local_put
+frame_dig -1
+pushbytes 0x0f // 0x0f
+intc_0 // 127
+bzero
+app_local_put
+retsub
+
+// read_impl
+readimpl_1:
+proto 3 1
+bytec_0 // ""
+store 1
+frame_dig -2
+intc_0 // 127
+/
+store 0
+readimpl_1_l1:
+load 0
+frame_dig -1
+intc_0 // 127
+/
+<=
+bz readimpl_1_l9
+load 0
+frame_dig -2
+intc_0 // 127
+/
+==
+bnz readimpl_1_l8
+intc_1 // 0
+readimpl_1_l4:
+store 2
+load 0
+frame_dig -1
+intc_0 // 127
+/
+==
+bnz readimpl_1_l7
+intc_0 // 127
+readimpl_1_l6:
+store 3
+load 1
+frame_dig -3
+bytec_1 // 0x000102030405060708090a0b0c0d0e0f
+load 0
+intc_2 // 1
+extract3
+app_local_get
+load 2
+load 3
+substring3
+concat
+store 1
+load 0
+intc_2 // 1
++
+store 0
+b readimpl_1_l1
+readimpl_1_l7:
+frame_dig -1
+intc_0 // 127
+%
+b readimpl_1_l6
+readimpl_1_l8:
+frame_dig -2
+intc_0 // 127
+%
+b readimpl_1_l4
+readimpl_1_l9:
+load 1
+retsub
+
+// write_impl
+writeimpl_2:
+proto 3 0
+intc_1 // 0
+store 8
+frame_dig -2
+intc_0 // 127
+/
+store 5
+writeimpl_2_l1:
+load 5
+frame_dig -2
+frame_dig -1
+len
++
+intc_0 // 127
+/
+<=
+bz writeimpl_2_l12
+load 5
+frame_dig -2
+intc_0 // 127
+/
+==
+bnz writeimpl_2_l11
+intc_1 // 0
+writeimpl_2_l4:
+store 6
+load 5
+frame_dig -2
+frame_dig -1
+len
++
+intc_0 // 127
+/
+==
+bnz writeimpl_2_l10
+intc_0 // 127
+writeimpl_2_l6:
+store 7
+frame_dig -3
+bytec_1 // 0x000102030405060708090a0b0c0d0e0f
+load 5
+intc_2 // 1
+extract3
+load 7
+intc_0 // 127
+!=
+load 6
+intc_1 // 0
+!=
+||
+bnz writeimpl_2_l9
+intc_0 // 127
+store 9
+frame_dig -1
+load 8
+intc_0 // 127
+extract3
+writeimpl_2_l8:
+app_local_put
+load 8
+load 9
++
+store 8
+load 5
+intc_2 // 1
++
+store 5
+b writeimpl_2_l1
+writeimpl_2_l9:
+load 7
+load 6
+-
+store 9
+frame_dig -3
+bytec_1 // 0x000102030405060708090a0b0c0d0e0f
+load 5
+intc_2 // 1
+extract3
+app_local_get
+intc_1 // 0
+load 6
+substring3
+frame_dig -1
+load 8
+load 9
+extract3
+concat
+frame_dig -3
+bytec_1 // 0x000102030405060708090a0b0c0d0e0f
+load 5
+intc_2 // 1
+extract3
+app_local_get
+load 7
+intc_0 // 127
+substring3
+concat
+b writeimpl_2_l8
+writeimpl_2_l10:
+frame_dig -2
+frame_dig -1
+len
++
+intc_0 // 127
+%
+b writeimpl_2_l6
+writeimpl_2_l11:
+frame_dig -2
+intc_0 // 127
+%
+b writeimpl_2_l4
+writeimpl_2_l12:
+retsub
+
+// opt_in
+optin_3:
+proto 0 0
+txn Sender
+callsub zeroimpl_0
+retsub
+
+// create
+create_4:
+proto 1 0
+bytec_2 // "deault_root"
+frame_dig -1
+extract 2 0
+app_global_put
+retsub
+
+// get_root
+getroot_5:
+proto 1 1
+bytec_0 // ""
+frame_dig -1
+callsub internalgetroot_7
+frame_bury 0
+frame_dig 0
+len
+itob
+extract 6 0
+frame_dig 0
+concat
+frame_bury 0
+frame_dig 0
+extract 2 0
+bytec_3 // 0x0000000000000000000000000000000000000000000000000000000000000000
+==
+bz getroot_5_l2
+bytec_2 // "deault_root"
+app_global_get
+frame_bury 0
+frame_dig 0
+len
+itob
+extract 6 0
+frame_dig 0
+concat
+frame_bury 0
+getroot_5_l2:
+retsub
+
+// set_root
+setroot_6:
+proto 2 0
+frame_dig -2
+callsub internalgetroot_7
+store 4
+load 4
+bytec_3 // 0x0000000000000000000000000000000000000000000000000000000000000000
+==
+bz setroot_6_l2
+bytec_2 // "deault_root"
+app_global_get
+store 4
+setroot_6_l2:
+frame_dig -1
+extract 2 0
+gtxn 0 Note
+extract 0 32
+==
+assert
+load 4
+gtxn 0 Note
+extract 32 32
+==
+assert
+gtxn 0 Receiver
+gtxn 1 Sender
+==
+assert
+gtxn 0 Sender
+pushbytes 0xfd2f6b0ce8b61ced2cd79a3458a70329d0c7d27451dbd2ae48e89e232ce0d8c4 // 7UXWWDHIWYOO2LGXTI2FRJYDFHIMPUTUKHN5FLSI5CPCGLHA3DCNKWEMFU
+==
+assert
+frame_dig -2
+intc 4 // 2032
+intc_3 // 32
+/
+<
+assert
+txn Sender
+frame_dig -2
+intc_3 // 32
+*
+frame_dig -1
+extract 2 0
+callsub writeimpl_2
+retsub
+
+// internal_get_root
+internalgetroot_7:
+proto 1 1
+frame_dig -1
+intc 4 // 2032
+intc_3 // 32
+/
+<
+assert
+txn Sender
+frame_dig -1
+intc_3 // 32
+*
+frame_dig -1
+intc_3 // 32
+*
+intc_3 // 32
++
+callsub readimpl_1
+retsub
+
+// create_caster
+createcaster_8:
+proto 0 0
+bytec_0 // ""
+txna ApplicationArgs 1
+frame_bury 0
+frame_dig 0
+callsub create_4
+retsub
+
+// get_root_caster
+getrootcaster_9:
+proto 0 0
+bytec_0 // ""
+intc_1 // 0
+txna ApplicationArgs 1
+btoi
+frame_bury 1
+frame_dig 1
+callsub getroot_5
+frame_bury 0
+pushbytes 0x151f7c75 // 0x151f7c75
+frame_dig 0
+concat
+log
+retsub
+
+// set_root_caster
+setrootcaster_10:
+proto 0 0
+intc_1 // 0
+bytec_0 // ""
+txna ApplicationArgs 1
+btoi
+frame_bury 0
+txna ApplicationArgs 2
+frame_bury 1
+frame_dig 0
+frame_dig 1
+callsub setroot_6
+retsub

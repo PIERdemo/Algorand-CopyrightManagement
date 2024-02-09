@@ -1,0 +1,46 @@
+{
+    "name": "SIAE",
+    "methods": [
+        {
+            "name": "create",
+            "args": [
+                {
+                    "type": "byte[]",
+                    "name": "deafult_root"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "get_root",
+            "args": [
+                {
+                    "type": "uint64",
+                    "name": "index"
+                }
+            ],
+            "returns": {
+                "type": "byte[]"
+            }
+        },
+        {
+            "name": "set_root",
+            "args": [
+                {
+                    "type": "uint64",
+                    "name": "index"
+                },
+                {
+                    "type": "byte[]",
+                    "name": "new_root"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        }
+    ],
+    "networks": {}
+}
