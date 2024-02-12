@@ -18,12 +18,6 @@ if __name__ == "__main__":
     user_1mb_before = get_min_balance(user_1.address)
     user_2mb_before = get_min_balance(user_2.address)
 
-    """
-    TODO: Cambiare tutto sullo user_2
-    TODO: Con la prepare, per decoupulare  chi create da chi lo usa
-    TODO: Misurare anche lo SC
-    """
-
     user1_app_client = client.ApplicationClient(
                     client=localnet.get_algod_client(),
                     app=app,
