@@ -35,14 +35,13 @@ if __name__ == "__main__":
     DEFAULT_ROOT = old_root
 
     byte_path = construct_path(path)
-    path_len = (len(path)).to_bytes(8, 'big')
     byte_root = bytes.fromhex(root)
     byte_old_root = bytes.fromhex(old_root) 
     BYTE_DEFAULT_ROOT = bytes.fromhex(DEFAULT_ROOT)
 
     # CREATE STATELESS SMART CONTRACT
     program = create_stateless_program(calculate_root)
-    logicsign_account = transaction.LogicSigAccount(program,args=[leaf, old_leaf, byte_path, path_len, byte_root, byte_old_root])
+    logicsign_account = transaction.LogicSigAccount(program,args=[leaf, old_leaf, byte_path, byte_root, byte_old_root])
 
     #print(f'Logic Signature Address: {logicsign_account.address()}')
 
