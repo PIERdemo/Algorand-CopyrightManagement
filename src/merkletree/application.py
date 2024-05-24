@@ -68,9 +68,9 @@ def calculate_root() -> Expr:
     leaf = BytesXor(insert, old_leaf)
 
     path = Arg(2)
-    path_length = Btoi(Arg(3))
-    new_root = Arg(4)
-    old_root = Arg(5)
+    path_length = Len(path) / Int(33)
+    new_root = Arg(3)
+    old_root = Arg(4)
 
     result = ScratchVar(TealType.bytes)
     old_result = ScratchVar(TealType.bytes)
